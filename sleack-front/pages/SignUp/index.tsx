@@ -1,4 +1,5 @@
 import React from "react";
+import { Form, Label, Input, LinkContainer, Button, Header } from "./style";
 
 //커스텀 컴포넌트 추가
 const SignUp = () => {
