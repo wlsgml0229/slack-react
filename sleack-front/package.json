@@ -10,6 +10,7 @@
   "author": "jini",
   "license": "MIT",
   "dependencies": {
+    "@emotion/babel-plugin": "^11.10.5",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

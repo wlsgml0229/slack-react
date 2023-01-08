@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Form, Label, Input, LinkContainer, Button, Header } from "./style";
 
 //커스텀 컴포넌트 추가
 const SignUp = () => {
+  const [email, setEmail] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const onChangeEmail = useCallback((e) => {setEmail(e.target.value)},[]);
+  const onChangeNickname = useCallback((e) => {setNickname(e.target.value)},[]);
+  const onChangePassword = useCallback((e) => {setPassword(e.target.value)},[]);
+  const onChangePasswordCheck = useCallback((e) => {setPasswordCheck(e.target.value)},[]);
+  const onSubmit = useCallback((e) => {
+    e.prventDefault();
+    console.log(email, nickname, password, passwordCheck)
+  },[email,nickname,password,passwordCheck]);
   return (
     <div id="container">
       <Header>Sleact</Header>
@@ -54,12 +66,12 @@ const SignUp = () => {
               onChange={onChangePasswordCheck}
             />
           </div>
-          {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
+          {/* {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
           {!nickname && <Error>닉네임을 입력해주세요.</Error>}
           {signUpError && <Error>{signUpError}</Error>}
           {signUpSuccess && (
             <Success>회원가입되었습니다! 로그인해주세요.</Success>
-          )}
+          )} */}
         </Label>
         <Button type="submit">회원가입</Button>
       </Form>
