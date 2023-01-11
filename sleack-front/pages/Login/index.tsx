@@ -16,9 +16,40 @@ import { Link, Redirect } from "react-router-dom";
 import useSWR from "swr";
 
 const LogIn = () => {
+  const { data, error, revalidate, mutate } = useSWR("/api/users", fetcher);
+
   const [logInError, setLogInError] = useState(false);
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      setLogInError(false);
+      axios
+        .post(
+          "/api/users/login",
+          { email, password },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((response) => {
+          revalidate();
+        })
+        .catch((error) => {
+          setLogInError(error.response?.data?.statusCode === 401);
+        });
+    },
+    [email, password]
+  );
+
+  if (data === undefined) {
+    return <div>로딩중...</div>;
+  }
+
+  if (data) {
+    return <Redirect to="/workspace/sleact/channel/일반" />;
+  }
 
   return (
     <div id="container">
