@@ -9,7 +9,7 @@ import {
   Button,
   Header,
 } from "@pages/SignUp/style";
-// import fetcher from '@utils/fetcher';
+import fetcher from '@utils/fetcher';
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
