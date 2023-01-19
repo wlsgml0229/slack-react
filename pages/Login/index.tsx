@@ -9,18 +9,17 @@ import {
   Button,
   Header,
 } from "@pages/SignUp/style";
-import fetcher from '@utils/fetcher';
+import fetcher from "@utils/fetcher";
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import useSWR from "swr";
 
 const LogIn = () => {
-
-// fetcher 함수를 따로 정의 하고 성공한 경우 data, 에러난경우 error 에 결과값이 담기게 된다. 
-  const { data, error, revalidate, mutate } = useSWR("/api/users", fetcher);
-
-
+  // fetcher 함수를 따로 정의 하고 성공한 경우 data, 에러난경우 error 에 결과값이 담기게 된다.
+  const { data, error, revalidate } = useSWR("/api/users", fetcher, {
+    dedupingInterval: 100000,
+  });
 
   const [logInError, setLogInError] = useState(false);
   const [email, onChangeEmail] = useInput("");
@@ -51,8 +50,9 @@ const LogIn = () => {
     return <div>로딩중...</div>;
   }
 
+  //revalidate 가 되면서 데이터가 생기니까 채널로 들어감
   if (data) {
-    return <Redirect to="/workspace/sleact/channel/일반" />;
+    return <Redirect to="/workspace/sleact/channel" />;
   }
 
   return (
