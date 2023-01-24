@@ -4,11 +4,11 @@ import React, { useCallback, useState } from "react";
 import { Form, Error, Label, Input, LinkContainer, Button, Header, Success } from "./style";
 import useSWR from "swr";
 import fetcher from "@utils/fetcher";
-import { Redirect, Link } from "react-router";
+import { Redirect } from "react-router";
 
 //커스텀 컴포넌트 추가
 const SignUp = () => {
-  const { data, error, revalidate } = useSWR("/api/users", fetcher);
+  const { data, error, mutate } = useSWR("/api/users", fetcher);
   const [email, onChangeEmail] = useInput('');
   const [nickname, onChangeNickname] = useInput('');
   const [password, , setPassword] = useInput('');

@@ -13,11 +13,11 @@ import fetcher from "@utils/fetcher";
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import useSWR from "swr";
+import useSWR  from "swr";
 
 const LogIn = () => {
   // fetcher 함수를 따로 정의 하고 성공한 경우 data, 에러난경우 error 에 결과값이 담기게 된다.
-  const { data, error, revalidate } = useSWR("/api/users", fetcher, {
+  const { data, error, mutate } = useSWR("/api/users", fetcher, {
     dedupingInterval: 100000,
   });
 
@@ -37,7 +37,7 @@ const LogIn = () => {
           }
         )
         .then((response) => {
-          revalidate();
+          mutate(false);
         })
         .catch((error) => {
           setLogInError(error.response?.data?.statusCode === 401);
