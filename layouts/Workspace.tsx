@@ -2,6 +2,7 @@ import React, { FC, useCallback } from "react";
 import useSWR from "swr";
 import fetcher from "@utils/fetcher";
 import axios from "axios";
+import { Redirect } from "react-router";
 
 // children 을 쓰려면 FC Type을 쓰면됨
 // children props로 사용
@@ -16,6 +17,11 @@ const Workspace: FC = ({ children }) => {
         revalidate();
       });
   }, []);
+
+  //swr 전역적으로 데이터 관리
+  if(!data) {
+    return <Redirect to="/login"/>;
+  }
 
   return (
     <div>
