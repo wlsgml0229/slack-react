@@ -1,3 +1,4 @@
+import { Header, ProfileImg, RightMenu } from "@layouts/Workspace/style";
 import React, { FC, useCallback } from "react";
 import useSWR, { mutate } from "swr";
 import fetcher from "@utils/fetcher";
@@ -14,17 +15,23 @@ const Workspace: FC = ({ children }) => {
         withCredentials: true,
       })
       .then(() => {
-        mutate(false)
+        mutate(false);
       });
   }, []);
 
   //swr 전역적으로 데이터 관리
-  if(!data) {
-    return <Redirect to="/login"/>;
+  if (!data) {
+    return <Redirect to="/login" />;
   }
 
   return (
     <div>
+      <Header>test</Header>
+      <RightMenu>
+        <span>
+          <ProfileImg src="" alt={data.nickname} />
+        </span>
+      </RightMenu>
       <button onClick={onLogout}>로그아웃</button>
       {children}
     </div>

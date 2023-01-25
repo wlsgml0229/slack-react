@@ -13,7 +13,7 @@ import fetcher from "@utils/fetcher";
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import useSWR  from "swr";
+import useSWR from "swr";
 
 const LogIn = () => {
   // fetcher 함수를 따로 정의 하고 성공한 경우 data, 에러난경우 error 에 결과값이 담기게 된다.
@@ -52,7 +52,7 @@ const LogIn = () => {
 
   //revalidate 가 되면서 데이터가 생기니까 채널로 들어감
   if (data) {
-    return <Redirect to="/workspace/sleact/channel" />;
+    return <Redirect to="/workspace/channel" />;
   }
 
   return (
