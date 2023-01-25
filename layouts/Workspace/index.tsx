@@ -1,9 +1,18 @@
-import { Header, ProfileImg, RightMenu } from "@layouts/Workspace/style";
+import {
+  Channels,
+  Chats,
+  Header,
+  ProfileImg,
+  RightMenu,
+  Workspaces,
+  WorkspaceWrapper,
+} from "@layouts/Workspace/style";
 import React, { FC, useCallback } from "react";
 import useSWR, { mutate } from "swr";
 import fetcher from "@utils/fetcher";
 import axios from "axios";
 import { Redirect } from "react-router";
+import gravatar from "gravatar";
 
 // children 을 쓰려면 FC Type을 쓰면됨
 // children props로 사용
@@ -26,13 +35,21 @@ const Workspace: FC = ({ children }) => {
 
   return (
     <div>
-      <Header>test</Header>
+      <Header></Header>
       <RightMenu>
         <span>
-          <ProfileImg src="" alt={data.nickname} />
+          <ProfileImg
+            src={gravatar.url(data.email, { s: "28px", d: "retro" })}
+            alt={data.nickname}
+          />
         </span>
       </RightMenu>
       <button onClick={onLogout}>로그아웃</button>
+      <WorkspaceWrapper>
+        <Workspaces>workspaces</Workspaces>
+        <Channels></Channels>
+        <Chats></Chats>
+      </WorkspaceWrapper>
       {children}
     </div>
   );
