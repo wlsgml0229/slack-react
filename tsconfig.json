@@ -21,6 +21,9 @@
   },
   "ts-node": {
     "compilerOptions": {
+      // import react 필요없을 경우를 위해추가
+      "jsx": "react-jsx",
+      
       "module": "commonjs",
       "moduleResolution": "Node",
       "target": "es5",
