@@ -1,8 +1,11 @@
 import React from "react";
+import { Container, Header } from "./styles";
 
 const Channel = () => {
   return (
-      <div>로그인 하신 것을 축하합니다!</div>
+      <Container>
+        <Header>채널</Header>
+      </Container>
   );
 };
 
