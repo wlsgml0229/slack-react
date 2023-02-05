@@ -2,12 +2,13 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router";
 
 import { BrowserRouter } from "react-router-dom";
-import loadble from "@loadable/component";
+import loadable from "@loadable/component";
 
 //코드 스플리팅
-const Login = loadble(() => import("@pages/Login"));
-const SignUp = loadble(() => import("@pages/SignUp"));
-const Channel = loadble(() => import("@pages/Channel"));
+const Login = loadable(() => import("@pages/Login"));
+const SignUp = loadable(() => import("@pages/SignUp"));
+const Workspace = loadable(() => import("@layouts/Workspace"))
+
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
         <Redirect exact path="/" to="/login" />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/workspace/channel" component={Channel} />
+        <Route path="/workspace" component={Workspace} />
       </Switch>
     </BrowserRouter>
   );

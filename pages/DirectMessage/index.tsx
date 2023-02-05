@@ -1,9 +1,9 @@
 import React from "react";
 
-const Channel = () => {
+const DirectMessage = () => {
   return (
       <div>로그인 하신 것을 축하합니다!</div>
   );
 };
 
-export default Channel;
+export default DirectMessage;

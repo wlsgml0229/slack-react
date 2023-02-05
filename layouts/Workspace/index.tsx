@@ -2,8 +2,10 @@ import {
   Channels,
   Chats,
   Header,
+  MenuScroll,
   ProfileImg,
   RightMenu,
+  WorkspaceName,
   Workspaces,
   WorkspaceWrapper,
 } from "@layouts/Workspace/style";
@@ -11,8 +13,14 @@ import React, { FC, useCallback } from "react";
 import useSWR, { mutate } from "swr";
 import fetcher from "@utils/fetcher";
 import axios from "axios";
-import { Redirect } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import gravatar from "gravatar";
+import loadable from "@loadable/component";
+
+
+//lodable로 불러오기
+const Channel = loadable(() => import("@pages/Channel"));
+const DirectMessage = loadable(() => import("@pages/DirectMessage"))
 
 // children 을 쓰려면 FC Type을 쓰면됨
 // children props로 사용
@@ -47,10 +55,17 @@ const Workspace: FC = ({ children }) => {
       <button onClick={onLogout}>로그아웃</button>
       <WorkspaceWrapper>
         <Workspaces>workspaces</Workspaces>
-        <Channels></Channels>
-        <Chats></Chats>
+        <Channels>
+          <WorkspaceName>Sleact</WorkspaceName>
+          <MenuScroll>MenuScroll</MenuScroll>
+        </Channels>
+        <Chats>
+          <Switch>
+          <Route path="/workspace/channel" component={Channel} />
+          <Route path="/workspace/dm" component={DirectMessage} />
+          </Switch>
+        </Chats>
       </WorkspaceWrapper>
-      {children}
     </div>
   );
 };
