@@ -1,9 +1,9 @@
 import {
   Channels,
   Chats,
-  Header,
+  Header, LogOutButton,
   MenuScroll,
-  ProfileImg,
+  ProfileImg, ProfileModal,
   RightMenu,
   WorkspaceName,
   Workspaces,
@@ -40,27 +40,36 @@ const Workspace: FC = ({ children }) => {
 
   // 토글함수
   const onClickUserProfile = useCallback(() => {
+    //과거값 반전
     setShowUserMenu((prev) => !prev)
   }, []);
 
   //swr 전역적으로 데이터 관리
-  if (!data) {
-    return <Redirect to="/login" />;
-  }
+  // if (!data) {
+  //   return <Redirect to="/login" />;
+  // }
 
 
   return (
     <div>
-      <Header></Header>
+      <Header>test</Header>
       <RightMenu>
         <span onClick={onClickUserProfile}>
           <ProfileImg
-            src={gravatar.url(data.email, { s: "28px", d: "retro" })}
-            alt={data.nickname}
+            src={gravatar.url(data?.nickname, { s: "28px", d: "retro" })}
+            alt={data?.nickname}
           />
           {showUserMenu &&
-            <Menu style={{right: 0, top: 38}} show={showUserMenu} onCloseModal={onClickUserProfile}>
-              프로필 메뉴
+            <Menu show={showUserMenu} onCloseModal={onClickUserProfile} style={{top:0, right:38}}>
+              <ProfileModal>
+              <img src={gravatar.url(data?.nickname, { s: "28px", d: "retro" })}
+                   alt={data?.nickname}/>
+                <div>
+                  <span id="profile-name">{data?.nickname}</span>
+                  <span id="profile-active">Active</span>
+                </div>
+              </ProfileModal>
+              <LogOutButton></LogOutButton>
             </Menu>
           }
         </span>
@@ -73,6 +82,7 @@ const Workspace: FC = ({ children }) => {
           <MenuScroll>MenuScroll</MenuScroll>
         </Channels>
         <Chats>
+          chats!!!
           <Switch>
             <Route path="/workspace/channel" component={Channel} />
             <Route path="/workspace/dm" component={DirectMessage} />

@@ -46,9 +46,9 @@ const LogIn = () => {
     [email, password]
   );
 
-  if (data === undefined) {
-    return <div>로딩중...</div>;
-  }
+  // if (data === undefined) {
+  //   return <div>로딩중...</div>;
+  // }
 
   //revalidate 가 되면서 데이터가 생기니까 채널로 들어감
   if (data) {
