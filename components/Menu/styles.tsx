@@ -23,12 +23,10 @@ export const CreateMenu = styled.div`
 `;
 
 export const CloseModalButton = styled.button`
-  background: pink;
   position: absolute;
   right: 20px;
   top: 6px;
-  height: 10px;
-  //background: transparent;
+  background: transparent;
   border: none;
   font-size: 30px;
   cursor: pointer;
